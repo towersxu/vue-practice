@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<script src="vue.js"></script>
+
+<div id="app">
+  <div>{{name}}</div>
+  <ul>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ul>
+</div>
+<script>
+  var vue = new Vue({
+    el: '#app',
+    data: {
+      name:'xutao',
+      todos: [
+        { text: 'Learn JavaScript' },
+        { text: 'Learn Vue.js' },
+        { text: 'Build Something Awesome' }
+      ]
+    },
+    methods:{
+      setName:function(name){
+        this.name = name;
+      }
+    }
+  });
+  setTimeout(function(){
+    vue.setName('taox');
+  },1000);
+
+</script>
+</body>
+</html>
