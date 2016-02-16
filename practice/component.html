@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="vue.js"></script>
+</head>
+<body>
+<div id="example">
+  <my-component>
+  </my-component>
+</div>
+<script>
+  var ChildComponent = Vue.component('child-component', {
+    props: ['myMessage'],
+    template: '<span>{{ myMessage }}</span><input v-model="myMessage">'
+  });
+  var MyComponent = Vue.extend({
+    template: '<h3>COMPONENT</h3>' +
+    '<input v-model="myMessage" value="123">' +
+    '<child :my-message.sync="myMessage"></child>',
+    components: {
+      'child': ChildComponent
+    }
+  });
+  Vue.component('my-component', MyComponent);
+  var vue = new Vue({
+    el: '#example'
+  });
+
+</script>
+</body>
+</html>
