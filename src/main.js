@@ -7,9 +7,12 @@ import './styles.css'
 
 Vue.config.debug = process.env.NODE_ENV !== 'production'
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+
+Vue.component('asy',function(){
+  template:'<div>1234</div>'
+});
 
 const router = new VueRouter()
 const App = Vue.extend(app)
-
 router.start(App, 'body')

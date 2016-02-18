@@ -5,14 +5,36 @@
     <title></title>
 </head>
 <body>
+  <div id="demo">
+    <async></async>
+  </div>
+  <script src="vue.js"></script>
   <script>
-    Vue.component('async-example', function (resolve, reject) {
-      setTimeout(function () {
-        resolve({
-          template: '<div>I am async!</div>'
-        })
-      }, 1000)
+    Vue.component('async', {
+      template:'<button v-on:click="loadAsync">123</button><div id="exp"></div>',
+      methods:{
+        loadAsync:function(){
+          var p = new Promise(function(resolve,reject){
+            Vue.component('link',function(resolve,reject){
+              setTimeout(function(){
+                resolve({
+                  template:'<a href="http://www.taobao.com">taobao</a>'
+                })
+              },3000)
+            })(resolve,reject);
+          });
+          console.log(p);
+          p.then(function(res){
+            new Vue(Object.assign({
+              el:'#exp'
+            },res))
+          });
+        }
+      }
     })
+    var vue = new Vue({
+      el: '#demo'
+    });
   </script>
 </body>
 </html>
